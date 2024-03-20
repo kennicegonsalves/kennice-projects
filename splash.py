@@ -4,7 +4,7 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 from votersignup import VoterSignup
 from voterpopup import VoterSignupPopup
-
+/charis is great
 class CampusVoice:
     def __init__(self):
         self.root = tk.Tk()
