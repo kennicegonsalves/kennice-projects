@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
 from PIL import Image, ImageTk
+import sqlite3
 
 class VoterSignup:
     def __init__(self):
@@ -65,7 +66,13 @@ class VoterSignup:
         class_ = self.entry_class.get()
         branch = self.entry_branch.get()
         email = self.entry_email.get()
-
+        connection = sqlite3.connect("Kenny.db")
+        cursor = connection.cursor()
+        cursor.execute("CREATE TABLE IF NOT EXISTS  voters(name TEXT, roll INT,pid INT,class_ TEXT,branch TEXT,email TEXT )")
+        cursor.execute("INSERT INTO users (name,roll,pid,class_,branch,email) VALUES (?, ?, ?, ?, ?, ?)",(name, roll, pid, class_, branch, email))
+        print("Smooth operator")
+        connection.commit()
+        
         if name and roll and pid and class_ and branch and email:
             messagebox.showinfo("Success", "Signup successful!")
         else:
